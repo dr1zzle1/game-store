@@ -40,7 +40,7 @@ const RegisterPage: FC = () => {
 					<Button onClick={handleClick} children="Зарегистрироваться" type='primary' />
 				</form>
 
-				<span className='register__register-link'>или <Link style={{ textDecoration: 'underline' }} to='/login'>Войдите</Link></span>
+				<span className='register__register-link'>или <Link style={{ textDecoration: 'underline' }} to='game-store/login'>Войдите</Link></span>
 			</div>
 		</div >
 	)

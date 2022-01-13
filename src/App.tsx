@@ -14,19 +14,18 @@ import { doc, setDoc } from "firebase/firestore/lite";
 
 function App() {
 	const { user } = useContext(AuthContext);
-
 	return (
 		<div className="App"><Header />
 			<Routes>
-				<Route path="/" element={<HomePage />}>
+				<Route path="game-store/" element={<HomePage />}>
 				</Route>
-				<Route path='/game/:id' element={<GamePage />}></Route>
-				<Route path='/cart' element={<CartPage />}></Route>
+				<Route path='game-store/game/:id' element={<GamePage />}></Route>
+				<Route path='game-store/cart' element={<CartPage />}></Route>
 				{
-					!user && <Route path="/login" element={<LoginPage />} />
+					!user && <Route path="game-store/login" element={<LoginPage />} />
 				}
 				{
-					!user && <Route path="/register" element={<RegisterPage />} />
+					!user && <Route path="game-store/register" element={<RegisterPage />} />
 				}
 			</Routes >
 		</div>

@@ -29,14 +29,14 @@ const LoginPage: FC = () => {
 		{error && <h2 style={{ color: 'red' }}>{error}</h2>}
 		<div className="login__wrapper">
 			<form id='login'>
-				<label htmlFor="e-mail">Email</label>
+				<label htmlFor="e-mail">E-mail</label>
 				<input className='login__inp' value={email} onChange={(e) => setEmail(e.target.value)} type="text" id='e-mail' />
 				<label htmlFor="password">Password</label>
 				<input className='login__inp' value={password} onChange={(e) => setPassword(e.target.value)} type="password" id='password' />
 				<Button type='primary' onClick={e => handleSubmit(e)} >Войти</Button>
 			</form>
 
-			<span className='login__register-link'>или <Link style={{ textDecoration: 'underline' }} to='/register'>Зарегистрируйтесь</Link></span>
+			<span className='login__register-link'>или <Link style={{ textDecoration: 'underline' }} to='/game-store/register'>Зарегистрируйтесь</Link></span>
 		</div>
 	</div >
 	)

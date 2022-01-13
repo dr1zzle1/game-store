@@ -10,7 +10,7 @@ const CartBlock: FC = () => {
 	const { products } = useTypedSelector(state => state.cart)
 	return (
 		<div className='cart-block'>
-			<Link to='/cart'>
+			<Link to='game-store/cart'>
 				<BiCartAlt size={25} className='cart-block__icon' />
 				<span className="total-price">{calcTotalPrice(products)} руб.</span>
 			</Link>
