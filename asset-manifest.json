@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/game-store/static/css/main.d02d1c1b.css",
-    "main.js": "/game-store/static/js/main.e46d62d9.js",
+    "main.js": "/game-store/static/js/main.cd508709.js",
     "static/media/spinner.gif": "/game-store/static/media/spinner.c5e37aac0fbc827e6089.gif",
     "index.html": "/game-store/index.html",
     "main.d02d1c1b.css.map": "/game-store/static/css/main.d02d1c1b.css.map",
-    "main.e46d62d9.js.map": "/game-store/static/js/main.e46d62d9.js.map"
+    "main.cd508709.js.map": "/game-store/static/js/main.cd508709.js.map"
   },
   "entrypoints": [
     "static/css/main.d02d1c1b.css",
-    "static/js/main.e46d62d9.js"
+    "static/js/main.cd508709.js"
   ]
 }
