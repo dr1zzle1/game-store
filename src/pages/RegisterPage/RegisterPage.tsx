@@ -22,7 +22,7 @@ const RegisterPage: FC = () => {
 				.catch((error) => {
 					setError(error.message)
 				});
-			navigate('/')
+			navigate('/games-store')
 		} else {
 			setError('Не валидный E-mail')
 		}

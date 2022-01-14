@@ -1,0 +1,42 @@
+.reviews-page__form {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.reviews-page__form-button {
+  width: 150px;
+}
+#review__text {
+  border-radius: 20px;
+  outline: none;
+  padding: 5px 10px;
+  border-color: white;
+  color: white;
+  height: 25px;
+  background: rgb(36, 37, 41);
+}
+#like,
+#dislike {
+  display: none;
+}
+.like-label,
+.dislike-label {
+  width: 25px;
+  height: 25px;
+  margin-right: 5px;
+}
+#like:checked:checked ~ .like-label svg {
+  border: 2px solid green;
+  border-radius: 5px;
+}
+#dislike:checked:checked ~ .dislike-label svg {
+  border: 2px solid red;
+  border-radius: 5px;
+}
+.reviews-page__form-button {
+  border: 2px solid #5558ed;
+  padding: 5px 0px;
+  border-radius: 7px;
+  background-color: #2d3075;
+}

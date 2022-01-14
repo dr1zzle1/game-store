@@ -1,0 +1,12 @@
+.review-item {
+  border: 2px solid;
+  margin-bottom: 5px;
+  border-radius: 10px;
+  padding: 10px 20px;
+}
+.green {
+  border-color: green;
+}
+.red {
+  border-color: red;
+}

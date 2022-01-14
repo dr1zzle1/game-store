@@ -10,7 +10,7 @@ import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import { useContext } from "react";
 import { AuthContext } from "./index";
-import { doc, setDoc } from "firebase/firestore/lite";
+import ReviewsPage from "./pages/ReviewsPage/ReviewsPage";
 
 function App() {
 	const { user } = useContext(AuthContext);
@@ -21,6 +21,7 @@ function App() {
 				</Route>
 				<Route path='game-store/game/:id' element={<GamePage />}></Route>
 				<Route path='game-store/cart' element={<CartPage />}></Route>
+				<Route path='game-store/reviews' element={<ReviewsPage />}></Route>
 				{
 					!user && <Route path="game-store/login" element={<LoginPage />} />
 				}

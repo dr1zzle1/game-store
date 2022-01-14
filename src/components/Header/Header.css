@@ -23,7 +23,7 @@
   display: flex;
   align-items: center;
 }
-.header__link {
+.header__login-link {
   border-radius: 15px;
   color: white;
   border: none;
@@ -43,4 +43,7 @@
   .cart-block {
     margin-bottom: 10px;
   }
+}
+.links {
+  margin-left: 30px;
 }
