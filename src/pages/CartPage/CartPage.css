@@ -11,3 +11,18 @@
   width: 27%;
   font-size: 18px;
 }
+@media (max-width: 767px) {
+  .order-page {
+    flex-direction: column-reverse;
+  }
+  .order-page__total-price span,
+  .order-page__right,
+  .order-page__left {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  .order-item__cover,
+  .game-cover {
+    width: 100%;
+  }
+}

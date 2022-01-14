@@ -20,7 +20,7 @@ const LoginPage: FC = () => {
 				.catch(() => {
 					setError('Проверьте введеныые данные')
 				});
-			navigate('/')
+			navigate('/game-store/')
 		} else {
 			setError('Не валидный E-mail')
 		}

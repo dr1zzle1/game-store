@@ -21,3 +21,13 @@
 .cart-item__delete-icon {
   cursor: pointer;
 }
+@media (max-width: 767px) {
+  .order-item {
+    flex-direction: column;
+  }
+  .order-item__price {
+    margin-left: 0;
+    display: flex;
+    justify-content: space-between;
+  }
+}

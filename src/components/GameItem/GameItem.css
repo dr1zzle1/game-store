@@ -3,6 +3,8 @@
   color: white;
   width: 320px;
   height: 320px;
+  flex-shrink: 0;
+  min-width: 156 px;
   background-color: rgb(36, 37, 41);
   border-radius: 15px;
   cursor: pointer;
@@ -32,4 +34,9 @@
 }
 .descr_block {
   height: 100%;
+}
+@media (max-width: 767px) {
+  .game-item {
+    width: 100%;
+  }
 }

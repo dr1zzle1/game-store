@@ -12,13 +12,11 @@ const Header: FC = () => {
 	}
 	return (
 		<div className="header">
-			<div className="wrapper">
-				<Link to='game-store/' className="header__store-title">
-					Game Store
-				</Link>
-			</div>
+			<Link to='game-store/' className="header__store-title">
+				Game Store
+			</Link>
 			<div className="wrapper header__cart-btn-wrapper">
-				{user ? <div><span>{user.email}</span><button onClick={handleClick}>Выйти</button></div> : <Link to='game-store/login'>Войти</Link>}
+				{user ? <div><span>{user.email}</span><button onClick={handleClick}>Выйти</button></div> : <div className='header__link'><Link to='game-store/login'>Войти</Link></div>}
 				<CartBlock />
 			</div>
 		</div>

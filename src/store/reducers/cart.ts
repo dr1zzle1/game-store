@@ -26,3 +26,4 @@ export const removeFromCart = (id:number) => ({
 	payload:id
 })
 
+

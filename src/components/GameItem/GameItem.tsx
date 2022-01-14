@@ -1,6 +1,5 @@
 import React, { FC } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useTypedSelector } from '../../hooks/useTypedSelector'
 import { IGame } from '../../types/games'
 import GameBuy from '../GameBuy/GameBuy'
 import GameCover from '../GameCover/GameCover'
@@ -21,7 +20,7 @@ const GameItem: FC<IGame> = (game) => {
 					<span className="game-item__title">{game.title}</span>
 					<div className="game-item__genre">
 						{game.genres.map((genre) => (
-							<GameGenre genre={genre} />
+							<GameGenre genre={genre} key={genre + game.id} />
 						))}
 					</div>
 				</div>
