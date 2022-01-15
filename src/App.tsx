@@ -1,6 +1,7 @@
 import {
 	Routes,
-	Route
+	Route,
+	Navigate
 } from "react-router-dom";
 import Header from "./components/Header/Header";
 import HomePage from "./pages/HomePage/HomePage";
@@ -17,16 +18,16 @@ function App() {
 	return (
 		<div className="App"><Header />
 			<Routes>
-				<Route path="game-store/" element={<HomePage />}>
+				<Route path="game-store" element={<HomePage />}>
 				</Route>
 				<Route path='game-store/game/:id' element={<GamePage />}></Route>
 				<Route path='game-store/cart' element={<CartPage />}></Route>
 				<Route path='game-store/reviews' element={<ReviewsPage />}></Route>
 				{
-					!user && <Route path="game-store/login" element={<LoginPage />} />
+					!user ? <Route path="game-store/login" element={<LoginPage />} /> : <Route path="game-store/login" element={<Navigate to='/game-store' />} />
 				}
 				{
-					!user && <Route path="game-store/register" element={<RegisterPage />} />
+					!user ? <Route path="game-store/register" element={<RegisterPage />} /> : <Route path="game-store/login" element={<Navigate to='/game-store' />} />
 				}
 			</Routes >
 		</div>

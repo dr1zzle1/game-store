@@ -38,7 +38,7 @@ const AuthProvider: FC = ({ children }) => {
 		return () => {
 			unListen()
 		}
-	}, [])
+	}, [ga])
 	const values = useMemo(() => ({ user, setUser, ga, db }), [user, ga])
 	return (
 		<AuthContext.Provider value={values}>{children}</AuthContext.Provider>

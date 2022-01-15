@@ -1,6 +1,6 @@
 import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth'
 import { FC, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import Button from '../../components/Button/Button'
 import { validateEmail } from '../../components/utils'
 import './RegisterPage.css'
@@ -10,7 +10,6 @@ const RegisterPage: FC = () => {
 	const [password, setPassword] = useState('')
 	const [error, setError] = useState('')
 	const auth = getAuth();
-	const navigate = useNavigate()
 
 
 
@@ -20,9 +19,11 @@ const RegisterPage: FC = () => {
 		if (validateEmail(email)) {
 			createUserWithEmailAndPassword(auth, email, password)
 				.catch((error) => {
-					setError(error.message)
+					password.length < 5 ?
+						setError('Пароль слишком короткий')
+						:
+						setError('Проверьте введеные данные')
 				});
-			navigate('/games-store')
 		} else {
 			setError('Не валидный E-mail')
 		}

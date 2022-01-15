@@ -31,6 +31,9 @@
   cursor: pointer;
   background-color: rgb(85, 88, 237);
 }
+.links {
+  margin-left: 30px;
+}
 @media (max-width: 767px) {
   .header {
     flex-direction: column;
@@ -43,7 +46,7 @@
   .cart-block {
     margin-bottom: 10px;
   }
-}
-.links {
-  margin-left: 30px;
+  .links {
+    margin: 0px;
+  }
 }

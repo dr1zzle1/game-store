@@ -15,7 +15,7 @@ const Home: FC = () => {
 	const { isLoading, error, games } = useTypedSelector(state => state.games)
 	useEffect(() => {
 		dispatch(getGames(db))
-	}, [dispatch])
+	}, [dispatch, db])
 	if (isLoading) {
 		return <Preloader />
 	}

@@ -41,3 +41,8 @@ export const setReviews = (db:Firestore,review:IReview) => async (dispatch:any,g
 	await setDoc(doc(db, "reviews", "reviews"), {reviews:[review,...reviewsState3]});
 	dispatch({type:ReviewsActionTypes.FETCH_REVIEWS_SUCCESS,payload:[review,...reviewsState3,]})
 }
+export const addErrorMessage = (text:string) => ({
+	type:ReviewsActionTypes.FETCH_REVIEWS_ERROR,
+	payload:text
+})
+

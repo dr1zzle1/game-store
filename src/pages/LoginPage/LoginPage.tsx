@@ -1,6 +1,6 @@
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import React, { FC, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Button from '../../components/Button/Button';
 import { validateEmail } from '../../components/utils';
 import './LoginPage.css'
@@ -12,15 +12,13 @@ const LoginPage: FC = () => {
 	const [password, setPassword] = useState('')
 	const [error, setError] = useState('')
 	const auth = getAuth();
-	const navigate = useNavigate()
-
 	const handleSubmit = (e: any) => {
+		e.preventDefault()
 		if (validateEmail(email)) {
 			signInWithEmailAndPassword(auth, email, password)
 				.catch(() => {
-					setError('Проверьте введеныые данные')
+					setError('Проверьте введеные данные')
 				});
-			navigate('/game-store/')
 		} else {
 			setError('Не валидный E-mail')
 		}

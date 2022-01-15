@@ -5,7 +5,7 @@ import { AuthContext } from '../..'
 import Preloader from '../../components/Preloader/Preloader'
 import ReviewItem from '../../components/ReviewItem/ReviewItem'
 import { useTypedSelector } from '../../hooks/useTypedSelector'
-import { getReviews, setReviews } from '../../store/reducers/reviews'
+import { addErrorMessage, getReviews, setReviews } from '../../store/reducers/reviews'
 import './ReviewsPage.css'
 
 const ReviewsPage: FC = () => {
@@ -13,7 +13,7 @@ const ReviewsPage: FC = () => {
 	const [reviewText, setReviewText] = useState('')
 	const { user, db } = useContext(AuthContext)
 	const dispatch = useDispatch()
-	const { isLoading, reviews } = useTypedSelector(state => state.reviews)
+	const { isLoading, reviews, error } = useTypedSelector(state => state.reviews)
 	const isPositively = checked === 'like' ? true : false
 	const onChangeValue = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setChecked(event.target.value);
@@ -21,20 +21,27 @@ const ReviewsPage: FC = () => {
 
 	useEffect(() => {
 		dispatch(getReviews(db))
-	}, [])
+	}, [db, dispatch])
 
 
 	const submitHandler = (e: React.SyntheticEvent) => {
 		e.preventDefault()
-		dispatch(setReviews(db, { id: reviews.length - 1, email: user.email, isPositively: isPositively, text: reviewText }))
-		setChecked('')
-		setReviewText('')
+		if (checked.length) {
+			dispatch(setReviews(db, { id: reviews.length - 1, email: user.email, isPositively: isPositively, text: reviewText }))
+			setChecked('')
+			setReviewText('')
+			dispatch(addErrorMessage(''))
+		} else {
+			dispatch(addErrorMessage('Выберите положительный или отрицательный отзыв'))
+		}
 	}
 	if (isLoading || !reviews) {
 		return <Preloader />
 	}
 	return (
+
 		<div className='reviews-page'>
+			{error && <h2 style={{ color: 'red' }}>{error}</h2>}
 			{user ? (<form className='reviews-page__form' onSubmit={(e: React.SyntheticEvent) => submitHandler(e)}>
 				<div>
 					<input required value={reviewText} onChange={(e) => setReviewText(e.target.value)} placeholder='Ваш текст...' id='review__text' type="text" />

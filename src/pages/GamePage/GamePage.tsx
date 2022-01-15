@@ -29,7 +29,7 @@ const GamePage: FC = () => {
 	}
 	useEffect(() => {
 		dispatch(getGame(Number(id), db));
-	}, [id, dispatch])
+	}, [id, dispatch, db])
 	if (isLoading) {
 		return <Preloader />
 	}

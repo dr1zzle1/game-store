@@ -40,3 +40,16 @@
   border-radius: 7px;
   background-color: #2d3075;
 }
+
+@media (max-width: 767px) {
+  .reviews-page {
+    margin-top: 100px;
+  }
+  .reviews-page__form div,
+  .reviews-page__form-button {
+    margin-left: auto;
+  }
+  .reviews-page__form input {
+    width: 100%;
+  }
+}

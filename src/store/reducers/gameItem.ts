@@ -1,6 +1,5 @@
 import { GameItemActionTypes, GameItemState } from './../../types/gameItem';
 import { GameItemAction } from "../../types/gameItem"
-import axios from 'axios';
 import { doc, getDoc, Firestore } from 'firebase/firestore/lite';
 
 const initialState:GameItemState = {
