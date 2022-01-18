@@ -11,9 +11,8 @@ import './GameItem.css'
 const GameItem: FC<IGame> = (game) => {
 
 	const navigate = useNavigate()
-
 	return (
-		<div className="game-item" onClick={() => navigate(`/game-store/game/${game.id}`)}>
+		<div className="game-item" onClick={() => navigate(`/game/${game.id}`)}>
 			<GameCover image={game.image} />
 			<div className="game-item__details">
 				<div className="descr_block">

@@ -2,6 +2,7 @@ export enum GamesActionTypes{
 	FETCH_GAMES='FETCH_GAMES',
 	FETCH_GAMES_SUCCESS='FETCH_GAMES_SUCCESS',
 	FETCH_GAMES_ERROR='FETCH_GAMES_ERROR',
+	ADD_GAME="ADD_GAME"
 }
 
 export interface IGame{
@@ -30,5 +31,8 @@ interface FetchGamesError{
 	type:GamesActionTypes.FETCH_GAMES_ERROR,
 	payload:string
 }
-
-export type GamesAction = FetchGamesAction | FetchGamesSuccess | FetchGamesError
+interface AddGame{
+	type:GamesActionTypes.ADD_GAME,
+	payload:IGame
+}
+export type GamesAction = FetchGamesAction | FetchGamesSuccess | FetchGamesError | AddGame

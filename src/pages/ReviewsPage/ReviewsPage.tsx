@@ -9,8 +9,8 @@ import { addErrorMessage, getReviews, setReviews } from '../../store/reducers/re
 import './ReviewsPage.css'
 
 const ReviewsPage: FC = () => {
-	const [checked, setChecked] = useState('')
-	const [reviewText, setReviewText] = useState('')
+	const [checked, setChecked] = useState<string>('')
+	const [reviewText, setReviewText] = useState<string>('')
 	const { user, db } = useContext(AuthContext)
 	const dispatch = useDispatch()
 	const { isLoading, reviews, error } = useTypedSelector(state => state.reviews)

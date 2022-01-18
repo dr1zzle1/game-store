@@ -1,5 +1,5 @@
-import { doc, Firestore, getDoc } from 'firebase/firestore/lite';
-import { GamesAction, GamesActionTypes, GamesState } from './../../types/games';
+import { doc, Firestore, getDoc, setDoc } from 'firebase/firestore/lite';
+import { GamesAction, GamesActionTypes, GamesState, IGame } from './../../types/games';
 
 const initialState: GamesState= {
 	games:[],
@@ -31,6 +31,19 @@ export const getGames = (db:Firestore) => async (dispatch:any) => {
 		}
 	} catch (error) {
 		dispatch({type:GamesActionTypes.FETCH_GAMES_ERROR, payload:'Произошла ошибка'})
+	}
+	
+}
+
+export const addGame = (db:Firestore, game:IGame) => async (dispatch: any,getState:any) => {
+	dispatch({type:GamesActionTypes.FETCH_GAMES})
+	const gamesState = getState().games.games
+	if (gamesState){
+		await setDoc(doc(db, "games", "games"), {games:[game,...gamesState ]});
+		dispatch({type:GamesActionTypes.FETCH_GAMES_SUCCESS, payload:[game,...gamesState,]})
+	}else{
+		await setDoc(doc(db, "games", "games"), {games:[game]});
+		dispatch({type:GamesActionTypes.FETCH_GAMES_SUCCESS, payload:[game]})
 	}
 	
 }

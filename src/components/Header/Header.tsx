@@ -3,6 +3,7 @@ import React, { FC, MouseEvent } from 'react'
 import { Link } from 'react-router-dom';
 import CartBlock from '../CartBlock/CartBlock';
 import './Header.css'
+import Button from '../Button/Button';
 
 const Header: FC = () => {
 	const { user, ga } = React.useContext(AuthContext);
@@ -13,15 +14,15 @@ const Header: FC = () => {
 	return (
 		<div className="header">
 			<div>
-				<Link to='game-store/' className="header__store-title">
+				<Link to='/' className="header__store-title">
 					Game Store
 				</Link>
 			</div>
 			<div className='header__links links'>
-				<Link to='game-store/reviews'>Отзывы</Link>
+				<Link to='/reviews'>Отзывы</Link>
 			</div>
 			<div className="wrapper header__cart-btn-wrapper">
-				{user ? <div><span>{user.email}</span><button onClick={handleClick}>Выйти</button></div> : <div className='header__login-link'><Link to='game-store/login'>Войти</Link></div>}
+				{user ? <div><span>{user.email}</span><Button type='secondary' onClick={handleClick}>Выйти</Button></div> : <div className='header__login-link'><Link to='/login'>Войти</Link></div>}
 				<CartBlock />
 			</div>
 		</div>

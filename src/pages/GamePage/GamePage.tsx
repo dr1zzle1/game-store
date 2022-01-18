@@ -19,7 +19,6 @@ const GamePage: FC = () => {
 	const dispatch = useDispatch();
 	const { db } = useContext(AuthContext)
 
-
 	const handleClick = (e: React.MouseEvent<HTMLElement>) => {
 		if (isItemInCart) {
 			dispatch(removeFromCart(game.id))

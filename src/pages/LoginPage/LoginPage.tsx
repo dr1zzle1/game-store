@@ -1,21 +1,21 @@
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import React, { FC, useState } from 'react'
 import { Link } from 'react-router-dom';
-import Button from '../../components/Button/Button';
 import { validateEmail } from '../../components/utils';
+import { Formik, Form, Field } from 'formik'
 import './LoginPage.css'
 
+export interface FormValues {
+	email: string,
+	password: string
+}
 
 const LoginPage: FC = () => {
-
-	const [email, setEmail] = useState('')
-	const [password, setPassword] = useState('')
-	const [error, setError] = useState('')
+	const [error, setError] = useState<string>('')
 	const auth = getAuth();
-	const handleSubmit = (e: any) => {
-		e.preventDefault()
-		if (validateEmail(email)) {
-			signInWithEmailAndPassword(auth, email, password)
+	const handleSubmit = (values: FormValues) => {
+		if (validateEmail(values.email)) {
+			signInWithEmailAndPassword(auth, values.email, values.password)
 				.catch(() => {
 					setError('Проверьте введеные данные')
 				});
@@ -23,18 +23,23 @@ const LoginPage: FC = () => {
 			setError('Не валидный E-mail')
 		}
 	}
+	const initialValues = {
+		email: '',
+		password: ''
+	}
 	return (<div className="login">
 		{error && <h2 style={{ color: 'red' }}>{error}</h2>}
 		<div className="login__wrapper">
-			<form id='login'>
-				<label htmlFor="e-mail">E-mail</label>
-				<input className='login__inp' value={email} onChange={(e) => setEmail(e.target.value)} type="text" id='e-mail' />
-				<label htmlFor="password">Password</label>
-				<input className='login__inp' value={password} onChange={(e) => setPassword(e.target.value)} type="password" id='password' />
-				<Button type='primary' onClick={e => handleSubmit(e)} >Войти</Button>
-			</form>
-
-			<span className='login__register-link'>или <Link style={{ textDecoration: 'underline' }} to='/game-store/register'>Зарегистрируйтесь</Link></span>
+			<Formik initialValues={initialValues} onSubmit={handleSubmit}>
+				<Form id='login'>
+					<label htmlFor="email">E-mail</label>
+					<Field className='login__inp' id='email' name='email' required={true} />
+					<label htmlFor="password">Password</label>
+					<Field type='password' className='login__inp' id='password' name='password' required={true} />
+					<button className='btn' type='submit'>Отправить</button>
+				</Form>
+			</Formik>
+			<span className='login__register-link'>или <Link style={{ textDecoration: 'underline' }} to='/register'>Зарегистрируйтесь</Link></span>
 		</div>
 	</div >
 	)

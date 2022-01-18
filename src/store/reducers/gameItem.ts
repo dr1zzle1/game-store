@@ -34,9 +34,9 @@ export const getGame = (id:number,db:Firestore) => async (dispatch:any) => {
 	const docRef = doc(db, "games",'games');
 	try {
 		const response = await getDoc(docRef)
-		console.log(response.data());
 		if (response.exists()){
-			dispatch({type:GameItemActionTypes.FETCH_GAME_SUCCESS,payload:response.data().games[id-1]})
+			const length = response.data().games.length
+			dispatch({type:GameItemActionTypes.FETCH_GAME_SUCCESS,payload:response.data().games[length-id-1]})
 		}
 	} catch (error) {
 		dispatch({type:GameItemActionTypes.FETCH_GAME_ERROR, payload:'Произошла ошибка'})

@@ -1,0 +1,22 @@
+.admin-page__input {
+  display: block;
+  border-radius: 20px;
+  outline: none;
+  padding: 5px 10px;
+  border-color: white;
+  color: white;
+  height: 25px;
+  background: rgb(36, 37, 41);
+  margin-bottom: 5px;
+}
+.admin-page__btn {
+  border-radius: 15px;
+  color: white;
+  border: none;
+  padding: 5px;
+  cursor: pointer;
+  background-color: rgb(80, 82, 84);
+}
+.admin-page__prev {
+  max-height: 50px;
+}

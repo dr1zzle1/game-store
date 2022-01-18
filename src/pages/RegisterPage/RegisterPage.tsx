@@ -1,25 +1,27 @@
 import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth'
 import { FC, useState } from 'react'
 import { Link } from 'react-router-dom'
-import Button from '../../components/Button/Button'
 import { validateEmail } from '../../components/utils'
 import './RegisterPage.css'
+import { Formik, Form, Field } from 'formik'
 
+
+export interface FormValues {
+	email: string,
+	password: string
+}
 const RegisterPage: FC = () => {
-	const [email, setEmail] = useState('')
-	const [password, setPassword] = useState('')
-	const [error, setError] = useState('')
+	const [error, setError] = useState<string>('')
 	const auth = getAuth();
 
 
 
 
-	const handleClick = (e: React.MouseEvent<HTMLElement>) => {
-		e.preventDefault()
-		if (validateEmail(email)) {
-			createUserWithEmailAndPassword(auth, email, password)
+	const handleSubmit = (values: FormValues) => {
+		if (validateEmail(values.email)) {
+			createUserWithEmailAndPassword(auth, values.email, values.password)
 				.catch((error) => {
-					password.length < 5 ?
+					values.password.length < 5 ?
 						setError('Пароль слишком короткий')
 						:
 						setError('Проверьте введеные данные')
@@ -28,20 +30,24 @@ const RegisterPage: FC = () => {
 			setError('Не валидный E-mail')
 		}
 	}
-
+	const initialValues = {
+		email: '',
+		password: ''
+	}
 	return (
 		<div className="register">
 			{error && <h2 style={{ color: 'red' }}>{error}</h2>}
 			<div className="register__wrapper">
-				<form id='register'>
-					<label htmlFor="e-mail">E-mail</label>
-					<input className='register__inp' value={email} onChange={(e) => setEmail(e.target.value)} type="text" id='e-mail' />
-					<label htmlFor="password">Password</label>
-					<input className='register__inp' value={password} onChange={(e) => setPassword(e.target.value)} type="password" id='password' />
-					<Button onClick={handleClick} children="Зарегистрироваться" type='primary' />
-				</form>
-
-				<span className='register__register-link'>или <Link style={{ textDecoration: 'underline' }} to='game-store/login'>Войдите</Link></span>
+				<Formik initialValues={initialValues} onSubmit={handleSubmit}>
+					<Form id='register'>
+						<label htmlFor="email">E-mail</label>
+						<Field className='register__inp' id='email' name='email' />
+						<label htmlFor="password">Password</label>
+						<Field className='register__inp' id='password' name='password' type='password' />
+						<button type="submit" className="btn">Зарегистрироваться</button>
+					</Form>
+				</Formik>
+				<span className='register__register-link'>или <Link style={{ textDecoration: 'underline' }} to='/login'>Войдите</Link></span>
 			</div>
 		</div >
 	)

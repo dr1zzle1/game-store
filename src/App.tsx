@@ -12,22 +12,24 @@ import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import { useContext } from "react";
 import { AuthContext } from "./index";
 import ReviewsPage from "./pages/ReviewsPage/ReviewsPage";
+import AdminPage from "./pages/AdminPage/AdminPage";
 
 function App() {
 	const { user } = useContext(AuthContext);
 	return (
 		<div className="App"><Header />
 			<Routes>
-				<Route path="game-store" element={<HomePage />}>
+				<Route path="/" element={<HomePage />}>
 				</Route>
-				<Route path='game-store/game/:id' element={<GamePage />}></Route>
-				<Route path='game-store/cart' element={<CartPage />}></Route>
-				<Route path='game-store/reviews' element={<ReviewsPage />}></Route>
+				<Route path='/game/:id' element={<GamePage />}></Route>
+				<Route path='/cart' element={<CartPage />}></Route>
+				<Route path='/reviews' element={<ReviewsPage />}></Route>
+				<Route path='/admin' element={<AdminPage />}></Route>
 				{
-					!user ? <Route path="game-store/login" element={<LoginPage />} /> : <Route path="game-store/login" element={<Navigate to='/game-store' />} />
+					!user ? <Route path="/login" element={<LoginPage />} /> : <Route path="/login" element={<Navigate to='/' />} />
 				}
 				{
-					!user ? <Route path="game-store/register" element={<RegisterPage />} /> : <Route path="game-store/login" element={<Navigate to='/game-store' />} />
+					!user ? <Route path="/register" element={<RegisterPage />} /> : <Route path="/register" element={<Navigate to='/' />} />
 				}
 			</Routes >
 		</div>
