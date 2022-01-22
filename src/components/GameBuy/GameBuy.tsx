@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import { useDispatch } from 'react-redux';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
-import { addToCart, removeFromCart } from '../../store/reducers/cart';
+import { addProduct, removeProduct } from '../../store/reducers/cart';
 import { IGame } from '../../types/games';
 import Button from '../Button/Button';
 import './GameBuy.css'
@@ -17,9 +17,9 @@ const GameBuy: FC<PropType> = ({ game }) => {
 	const handleClick = (e: React.MouseEvent<HTMLElement>) => {
 		e.stopPropagation();
 		if (isItemInCart) {
-			dispatch(removeFromCart(game.id))
+			dispatch(removeProduct(game.id))
 		} else {
-			dispatch(addToCart(game))
+			dispatch(addProduct(game))
 		}
 	}
 	return (

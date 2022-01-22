@@ -1,5 +1,13 @@
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { doc, Firestore, getDoc, setDoc } from 'firebase/firestore/lite';
-import { GamesAction, GamesActionTypes, GamesState, IGame } from './../../types/games';
+import { IGame } from './../../types/games';
+
+interface GamesState {
+	games:Array<IGame>;
+	isLoading:boolean;
+	error: null | string;
+}
+
 
 const initialState: GamesState= {
 	games:[],
@@ -7,43 +15,50 @@ const initialState: GamesState= {
 	error:null
 }
 
-
-export const games = (state:GamesState = initialState, action:GamesAction):GamesState => {
-	switch (action.type) {
-		case GamesActionTypes.FETCH_GAMES:
-			return {...state, isLoading:true}
-		case GamesActionTypes.FETCH_GAMES_SUCCESS:
-			return {...state, isLoading:false, games: action.payload}
-		case GamesActionTypes.FETCH_GAMES_ERROR:
-			return {...state, isLoading:false, error: action.payload}
-		default:
-			return state
+export const gamesSlice = createSlice({
+	name:'games',
+	initialState,
+	reducers:{
+		fetchGame:(state) => {
+			state.isLoading=true
+		},
+		fetchGamesSuccess:(state,action:PayloadAction<Array<IGame>>) => {
+			state.isLoading=false;
+			state.games=action.payload
+		},
+		fetchGamesError:(state,action:PayloadAction<string>) => {
+			state.isLoading=false;
+			state.error=action.payload
+		}
 	}
-}
+})
+const {fetchGame,fetchGamesSuccess,fetchGamesError} = gamesSlice.actions
 
 export const getGames = (db:Firestore) => async (dispatch:any) => {
-	dispatch({type:GamesActionTypes.FETCH_GAMES})
+	dispatch(fetchGame())
 	const docRef = doc(db, "games",'games');
 	try {
 		const response = await getDoc(docRef)
 		if (response.exists()){
-			dispatch({type:GamesActionTypes.FETCH_GAMES_SUCCESS,payload:response.data().games})
+			dispatch(fetchGamesSuccess(response.data().games))
 		}
 	} catch (error) {
-		dispatch({type:GamesActionTypes.FETCH_GAMES_ERROR, payload:'Произошла ошибка'})
+		dispatch(fetchGamesError('Произошла ошибка'))
 	}
 	
 }
 
 export const addGame = (db:Firestore, game:IGame) => async (dispatch: any,getState:any) => {
-	dispatch({type:GamesActionTypes.FETCH_GAMES})
+	dispatch(fetchGame())
 	const gamesState = getState().games.games
 	if (gamesState){
 		await setDoc(doc(db, "games", "games"), {games:[game,...gamesState ]});
-		dispatch({type:GamesActionTypes.FETCH_GAMES_SUCCESS, payload:[game,...gamesState,]})
+		dispatch(fetchGamesSuccess([game,...gamesState,]))
 	}else{
 		await setDoc(doc(db, "games", "games"), {games:[game]});
-		dispatch({type:GamesActionTypes.FETCH_GAMES_SUCCESS, payload:[game]})
+		dispatch(fetchGamesSuccess([game]))
 	}
 	
 }
+
+export default gamesSlice.reducer

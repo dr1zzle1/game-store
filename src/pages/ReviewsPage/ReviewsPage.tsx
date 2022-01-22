@@ -5,7 +5,7 @@ import { AuthContext } from '../..'
 import Preloader from '../../components/Preloader/Preloader'
 import ReviewItem from '../../components/ReviewItem/ReviewItem'
 import { useTypedSelector } from '../../hooks/useTypedSelector'
-import { addErrorMessage, getReviews, setReviews } from '../../store/reducers/reviews'
+import { fetchReviewError, getReviews, setReviews } from '../../store/reducers/reviews'
 import './ReviewsPage.css'
 
 const ReviewsPage: FC = () => {
@@ -30,9 +30,9 @@ const ReviewsPage: FC = () => {
 			dispatch(setReviews(db, { id: reviews.length - 1, email: user.email, isPositively: isPositively, text: reviewText }))
 			setChecked('')
 			setReviewText('')
-			dispatch(addErrorMessage(''))
+			dispatch(fetchReviewError(''))
 		} else {
-			dispatch(addErrorMessage('Выберите положительный или отрицательный отзыв'))
+			dispatch(fetchReviewError('Выберите положительный или отрицательный отзыв'))
 		}
 	}
 	if (isLoading || !reviews) {

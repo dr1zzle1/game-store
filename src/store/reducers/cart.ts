@@ -1,29 +1,29 @@
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IGame } from '../../types/games';
-import { CartState, CartAction, CartActionTypes } from './../../types/cart';
+
+interface CartState {
+	products:Array<IGame>;
+}
 
 const initialState:CartState = {
 	products:[] as Array<IGame>
 }
-export const cart = (state:CartState = initialState,action:CartAction):CartState => {
-	switch (action.type) {
-		case CartActionTypes.ADD_PRODUCT:
-			return {products:[...state.products, action.payload]}
-		case CartActionTypes.REMOVE_PRODUCT:
+
+export const cartSlice = createSlice({
+	name:'cart',
+	initialState,
+	reducers:{
+		addProduct: (state, action:PayloadAction<IGame>) =>{
+			state.products=[...state.products,action.payload]
+		},
+		removeProduct: (state,action:PayloadAction<number>) => {
 			const newCart = state.products.filter(game => game.id !== action.payload)
-			return {products:newCart}
-		default:
-			return state
+			state.products=newCart
+		}
 	}
-}
-
-export const addToCart = (game:IGame) => ({
-	type:CartActionTypes.ADD_PRODUCT,
-	payload:game
 })
 
-export const removeFromCart = (id:number) => ({
-	type:CartActionTypes.REMOVE_PRODUCT,
-	payload:id
-})
 
+export const {addProduct,removeProduct} = cartSlice.actions
+export default cartSlice.reducer
 

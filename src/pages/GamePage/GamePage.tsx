@@ -7,7 +7,7 @@ import GameCover from '../../components/GameCover/GameCover'
 import GameGenre from '../../components/GameGenre/GameGenre'
 import Preloader from '../../components/Preloader/Preloader'
 import { useTypedSelector } from '../../hooks/useTypedSelector'
-import { addToCart, removeFromCart } from '../../store/reducers/cart'
+import { addProduct, removeProduct } from '../../store/reducers/cart'
 import { getGame } from '../../store/reducers/gameItem'
 import './GamePage.css'
 
@@ -21,9 +21,9 @@ const GamePage: FC = () => {
 
 	const handleClick = (e: React.MouseEvent<HTMLElement>) => {
 		if (isItemInCart) {
-			dispatch(removeFromCart(game.id))
+			dispatch(removeProduct(game.id))
 		} else {
-			dispatch(addToCart(game))
+			dispatch(addProduct(game))
 		}
 	}
 	useEffect(() => {

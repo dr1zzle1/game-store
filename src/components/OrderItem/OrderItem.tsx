@@ -4,7 +4,7 @@ import { AiOutlineCloseCircle } from "react-icons/ai";
 import { IGame } from '../../types/games';
 import './OrderItem.css'
 import { useDispatch } from 'react-redux';
-import { removeFromCart } from '../../store/reducers/cart';
+import { removeProduct } from '../../store/reducers/cart';
 
 type PropType = {
 	game: IGame
@@ -13,7 +13,7 @@ type PropType = {
 const OrderItem: FC<PropType> = ({ game }) => {
 	const dispatch = useDispatch()
 	const handleDeleteClick = () => {
-		dispatch(removeFromCart(game.id))
+		dispatch(removeProduct(game.id))
 
 	}
 	return (

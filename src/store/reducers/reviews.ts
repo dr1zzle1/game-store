@@ -1,6 +1,12 @@
-import { ReviewsAction, ReviewsActionTypes, IReview } from './../../types/reviews';
-import { ReviewsState } from "../../types/reviews"
+import { IReview } from './../../types/reviews';
 import { doc, Firestore, getDoc, setDoc } from 'firebase/firestore/lite';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
+interface ReviewsState{
+	reviews:Array<IReview>,
+	isLoading:boolean,
+	error:null | string
+}
 
 const initialState: ReviewsState= {
 	reviews:[],
@@ -8,41 +14,46 @@ const initialState: ReviewsState= {
 	error:null
 }
 
-export const reviews = (state: ReviewsState = initialState,action: ReviewsAction):ReviewsState => {
-	switch (action.type) {
-		case ReviewsActionTypes.FETCH_REVIEWS:
-			return {...state, isLoading:true}
-		case ReviewsActionTypes.FETCH_REVIEWS_SUCCESS:
-			return {...state, isLoading:false, reviews:action.payload}
-		case ReviewsActionTypes.FETCH_REVIEWS_ERROR:
-			return {...state, isLoading:false, error: action.payload}
-		default:
-			return state
+export const reviewsSlice = createSlice({
+	name:'reviews',
+	initialState,
+	reducers:{
+		fetchReviews:(state) => {
+			state.isLoading=true
+		},
+		fetchReviewsSuccess:(state,action:PayloadAction<Array<IReview>>) =>{
+			state.isLoading=false;
+			state.reviews=action.payload
+		},
+		fetchReviewError:(state,action:PayloadAction<string>) =>{
+			state.isLoading=false;
+			state.error=action.payload
+		}
 	}
-}
+})
+
+export const {fetchReviews,fetchReviewsSuccess,fetchReviewError} = reviewsSlice.actions
 
 export const getReviews = (db:Firestore) => async (dispatch:any) => {
-	dispatch({type:ReviewsActionTypes.FETCH_REVIEWS})
+	dispatch(fetchReviews())
 	const docRef = doc(db, "reviews",'reviews');
 	try {
 		const response = await getDoc(docRef)
 		if (response.exists()){
-		dispatch({type:ReviewsActionTypes.FETCH_REVIEWS_SUCCESS,payload:response.data().reviews ? response.data().reviews : [] })
+		dispatch(fetchReviewsSuccess(response.data().reviews ? response.data().reviews : [] ))
 		}
 	} catch (error) {
-		dispatch({type:ReviewsActionTypes.FETCH_REVIEWS_ERROR, payload:'Произошла ошибка'})
+		dispatch(fetchReviewError('Произошла ошибка'))
 	}
 	
 }
 
 export const setReviews = (db:Firestore,review:IReview) => async (dispatch:any,getState:any) => {
-	dispatch({type:ReviewsActionTypes.FETCH_REVIEWS})
+	dispatch(fetchReviews())
 	const reviewsState3 = getState().reviews.reviews
 	await setDoc(doc(db, "reviews", "reviews"), {reviews:[review,...reviewsState3]});
-	dispatch({type:ReviewsActionTypes.FETCH_REVIEWS_SUCCESS,payload:[review,...reviewsState3,]})
+	dispatch(fetchReviewsSuccess([review,...reviewsState3,]))
 }
-export const addErrorMessage = (text:string) => ({
-	type:ReviewsActionTypes.FETCH_REVIEWS_ERROR,
-	payload:text
-})
+
+export default reviewsSlice.reducer
 
