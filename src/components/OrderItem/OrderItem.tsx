@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import GameCover from '../GameCover/GameCover'
 import { AiOutlineCloseCircle } from "react-icons/ai";
-import { IGame } from '../../types/games';
+import { IGame } from '../../types';
 import './OrderItem.css'
 import { useDispatch } from 'react-redux';
 import { removeProduct } from '../../store/reducers/cart';

@@ -2,7 +2,7 @@ import React, { FC, useContext, useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import Preloader from '../../components/Preloader/Preloader'
 import { AuthContext } from '../../index'
-import { IGame } from './../../types/games';
+import { IGame } from './../../types';
 import { addGame, getGames } from '../../store/reducers/games'
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { Formik, Form, Field, FormikHelpers } from 'formik'

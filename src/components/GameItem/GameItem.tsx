@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { IGame } from '../../types/games'
+import { IGame } from '../../types'
 import GameBuy from '../GameBuy/GameBuy'
 import GameCover from '../GameCover/GameCover'
 import GameGenre from '../GameGenre/GameGenre'

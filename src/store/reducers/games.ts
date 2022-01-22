@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { doc, Firestore, getDoc, setDoc } from 'firebase/firestore/lite';
-import { IGame } from './../../types/games';
+import { IGame } from './../../types';
 
 interface GamesState {
 	games:Array<IGame>;

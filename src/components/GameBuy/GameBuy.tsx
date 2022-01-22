@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 import { useDispatch } from 'react-redux';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { addProduct, removeProduct } from '../../store/reducers/cart';
-import { IGame } from '../../types/games';
+import { IGame } from '../../types';
 import Button from '../Button/Button';
 import './GameBuy.css'
 

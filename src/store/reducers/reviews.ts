@@ -1,4 +1,4 @@
-import { IReview } from './../../types/reviews';
+import { IReview } from '../../types';
 import { doc, Firestore, getDoc, setDoc } from 'firebase/firestore/lite';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 

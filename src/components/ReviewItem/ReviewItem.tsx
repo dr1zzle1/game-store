@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { IReview } from '../../types/reviews'
+import { IReview } from '../../types'
 import './ReviewItem.css'
 
 const ReviewItem: FC<IReview> = ({ email, isPositively, text }) => {

@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IGame } from '../../types/games';
+import { IGame } from '../../types';
 
 interface CartState {
 	products:Array<IGame>;

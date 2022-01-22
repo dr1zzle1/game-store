@@ -1,4 +1,4 @@
-import { IGame } from './../../types/games';
+import { IGame } from './../../types';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { doc, getDoc, Firestore } from 'firebase/firestore/lite';
 
