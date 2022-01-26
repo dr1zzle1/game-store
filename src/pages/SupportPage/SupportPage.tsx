@@ -5,6 +5,8 @@ import { IMessage } from '../../types';
 import './SupportPage.css'
 import { Field, Form, Formik, FormikHelpers } from 'formik';
 import { onSnapshot, setDoc, doc } from 'firebase/firestore';
+import { spawn } from 'child_process';
+
 
 export interface FormValues {
 	messageText: string,
@@ -17,7 +19,6 @@ interface PropTypes {
 const SupportPage: FC<PropTypes> = ({ user }) => {
 	const { db } = React.useContext(AuthContext);
 	const [messages, setMessages] = useState<IMessage[]>([]);
-
 	useEffect(() => {
 		if (user) {
 			const unsub = onSnapshot(doc(db, "messages", user.uid), (doc) => {
@@ -50,6 +51,9 @@ const SupportPage: FC<PropTypes> = ({ user }) => {
 				}]
 			})
 		}
+	}
+	if (!user) {
+		return (<span>Чтобы написать в поддержку нужно быть зарегестрированным</span>)
 	}
 	return <>
 		<div className='messages'>
