@@ -13,6 +13,9 @@ import { useContext } from "react";
 import { AuthContext } from "./index";
 import ReviewsPage from "./pages/ReviewsPage/ReviewsPage";
 import AdminPage from "./pages/AdminPage/AdminPage";
+import SupportPage from "./pages/SupportPage/SupportPage";
+import AdminSupportPage from "./pages/AdminSupportPage/AdminSupportPage";
+import AdminSupportDialog from "./pages/AdminSupportPage/AdminSupportDialog";
 
 function App() {
 	const { user } = useContext(AuthContext);
@@ -25,6 +28,9 @@ function App() {
 				<Route path='/cart' element={<CartPage />}></Route>
 				<Route path='/reviews' element={<ReviewsPage />}></Route>
 				<Route path='/admin' element={<AdminPage />}></Route>
+				<Route path='/support' element={<SupportPage user={user} />}></Route>
+				<Route path='/adminsupport' element={<AdminSupportPage />}></Route>
+				<Route path='/adminsupport/:id' element={<AdminSupportDialog />}></Route>
 				{
 					!user ? <Route path="/login" element={<LoginPage />} /> : <Route path="/login" element={<Navigate to='/' />} />
 				}

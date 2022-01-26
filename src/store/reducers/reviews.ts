@@ -1,5 +1,5 @@
 import { IReview } from '../../types';
-import { doc, Firestore, getDoc, setDoc } from 'firebase/firestore/lite';
+import { doc, Firestore, getDoc, setDoc } from 'firebase/firestore';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface ReviewsState{

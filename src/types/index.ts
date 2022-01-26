@@ -14,3 +14,7 @@ export interface IGame{
 	id:number
 	description:string;
 }
+export interface IMessage{
+	text:string,
+	userId:string
+}

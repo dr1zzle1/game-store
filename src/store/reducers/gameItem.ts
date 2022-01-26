@@ -1,6 +1,6 @@
 import { IGame } from './../../types';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { doc, getDoc, Firestore } from 'firebase/firestore/lite';
+import { doc, getDoc, Firestore } from 'firebase/firestore';
 
 type GameItemState = {
 	game:IGame,

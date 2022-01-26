@@ -20,6 +20,7 @@ const Header: FC = () => {
 			</div>
 			<div className='header__links links'>
 				<Link to='/reviews'>Отзывы</Link>
+				<Link to='support'>Поддержка</Link>
 			</div>
 			<div className="wrapper header__cart-btn-wrapper">
 				{user ? <div><span>{user.email}</span><Button type='secondary' onClick={handleClick}>Выйти</Button></div> : <div className='header__login-link'><Link to='/login'>Войти</Link></div>}

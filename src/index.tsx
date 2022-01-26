@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import App from './App';
 import { store } from './store';
 import { initializeApp } from 'firebase/app';
-import { Firestore, getFirestore } from 'firebase/firestore/lite';
+import { Firestore, getFirestore } from 'firebase/firestore';
 import { Auth, getAuth, onAuthStateChanged } from 'firebase/auth';
 
 const app = initializeApp({

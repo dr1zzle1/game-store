@@ -34,6 +34,9 @@
 .links {
   margin-left: 30px;
 }
+.links a {
+  margin-right: 5px;
+}
 @media (max-width: 767px) {
   .header {
     flex-direction: column;

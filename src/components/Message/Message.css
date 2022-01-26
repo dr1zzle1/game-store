@@ -1,0 +1,15 @@
+.message {
+  margin: 10;
+  padding: 7px;
+  font-family: 'Roboto', sans-serif;
+  width: fit-content;
+  background-color: #505254;
+  border-radius: 6px;
+  color: #fff;
+}
+
+.message-author {
+  margin-left: auto;
+  padding-right: 30px;
+  box-shadow: ' 0 4px 12px rgba(16, 16, 16, 0.18), 0 16px 20px rgba(16, 16, 16, 0.17)';
+}

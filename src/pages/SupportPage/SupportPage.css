@@ -1,0 +1,17 @@
+.messages {
+  width: 80%;
+  height: 70vh;
+  border: 2px solid gray;
+  border-radius: 4px;
+  overflow: scroll;
+  padding: 10px;
+}
+.message {
+  width: calc(50% - 20px);
+}
+.dialog__wrapper {
+  margin-top: 10px;
+}
+.dialog__btn {
+  margin-left: 10px;
+}

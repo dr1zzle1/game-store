@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { doc, Firestore, getDoc, setDoc } from 'firebase/firestore/lite';
+import { doc, Firestore, getDoc, setDoc } from 'firebase/firestore';
 import { IGame } from './../../types';
 
 interface GamesState {
@@ -32,6 +32,7 @@ export const gamesSlice = createSlice({
 		}
 	}
 })
+
 const {fetchGame,fetchGamesSuccess,fetchGamesError} = gamesSlice.actions
 
 export const getGames = (db:Firestore) => async (dispatch:any) => {
