@@ -53,6 +53,7 @@
   .links {
     margin: 0px;
     margin-top: 10px;
+    text-align: center;
     display: flex;
     flex-direction: column;
   }
