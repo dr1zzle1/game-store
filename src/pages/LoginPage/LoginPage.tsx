@@ -36,7 +36,7 @@ const LoginPage: FC = () => {
 					<Field className='login__inp' id='email' name='email' required={true} />
 					<label htmlFor="password">Password</label>
 					<Field type='password' className='login__inp' id='password' name='password' required={true} />
-					<button className='btn' type='submit'>Отправить</button>
+					<button className='btn' type='submit'>Войти</button>
 				</Form>
 			</Formik>
 			<span className='login__register-link'>или <Link style={{ textDecoration: 'underline' }} to='/register'>Зарегистрируйтесь</Link></span>

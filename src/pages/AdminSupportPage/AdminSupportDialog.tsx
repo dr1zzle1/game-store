@@ -44,7 +44,10 @@ const AdminSupportDialog: FC = () => {
 			})
 		}
 	}
-	return <>
+	if (user.email !== 'admin@mail.ru') {
+		return <input type='password' />
+	}
+	return <div className='messages__wrapper'>
 		<div className='messages'>
 			{messages?.map(message => <Message text={message.text} key={message.text + message.userId} isAuthor={user?.uid === message.userId} />)}
 		</div>
@@ -56,7 +59,7 @@ const AdminSupportDialog: FC = () => {
 				</Form>
 			</Formik>
 		</div>
-	</>;
+	</div>;
 };
 
 export default AdminSupportDialog;

@@ -12,6 +12,7 @@ const Header: FC = () => {
 		ga.signOut()
 	}
 	return (
+
 		<div className="header">
 			<div>
 				<Link to='/' className="header__store-title">

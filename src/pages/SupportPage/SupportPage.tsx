@@ -5,8 +5,6 @@ import { IMessage } from '../../types';
 import './SupportPage.css'
 import { Field, Form, Formik, FormikHelpers } from 'formik';
 import { onSnapshot, setDoc, doc } from 'firebase/firestore';
-import { spawn } from 'child_process';
-
 
 export interface FormValues {
 	messageText: string,
@@ -55,7 +53,7 @@ const SupportPage: FC<PropTypes> = ({ user }) => {
 	if (!user) {
 		return (<span>Чтобы написать в поддержку нужно быть зарегестрированным</span>)
 	}
-	return <>
+	return <div className='messages__wrapper'>
 		<div className='messages'>
 			{messages?.map(message => <Message text={message.text} key={message.text + message.userId} isAuthor={user?.uid === message.userId} />)}
 		</div>
@@ -67,7 +65,7 @@ const SupportPage: FC<PropTypes> = ({ user }) => {
 				</Form>
 			</Formik>
 		</div>
-	</>;
+	</div>;
 };
 
 export default SupportPage;

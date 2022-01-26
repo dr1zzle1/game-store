@@ -1,17 +1,48 @@
 .messages {
   width: 80%;
-  height: 70vh;
+  height: 60vh;
   border: 2px solid gray;
   border-radius: 4px;
   overflow: scroll;
+  overflow-x: hidden;
   padding: 10px;
+}
+.messages::-webkit-scrollbar {
+  width: 5px;
+  background-color: rgba(26, 24, 47, 0.15);
+  border-radius: 5px;
+  height: 200px;
+}
+
+.messages::-webkit-scrollbar-thumb {
+  background: white;
+  border-radius: 5px;
 }
 .message {
   width: calc(50% - 20px);
+  margin-bottom: 10px;
 }
 .dialog__wrapper {
   margin-top: 10px;
+  width: 80%;
 }
 .dialog__btn {
-  margin-left: 10px;
+  display: block;
+  margin-left: auto;
+  width: 100px;
+}
+.dialog__inp {
+  display: block;
+  width: 98%;
+  padding: 1%;
+  outline: none;
+  border: none;
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
+.messages__wrapper {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
 }
