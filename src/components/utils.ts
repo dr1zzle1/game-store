@@ -1,8 +1,9 @@
+import { IGame } from './../types/index';
 
 
-export const calcTotalPrice = (items:any) => items.reduce((acc:any, item:any) => (acc += item.price), 0);
+export const calcTotalPrice = (items:IGame[]) => items.reduce((acc:number, item:IGame) => (acc += item.price), 0);
 
-export const enumerate = (num:number, dec:any) => {
+export const enumerate = (num:number, dec:string[]) => {
     if (num > 100) num = num % 100;
     if (num <= 20 && num >= 10) return dec[2];
     if (num > 20) num = num % 10;

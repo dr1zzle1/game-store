@@ -3,6 +3,7 @@ import { Field, Form, Formik, FormikHelpers } from 'formik';
 import React, { FC, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Message from '../../components/Message/Message';
+import Preloader from '../../components/Preloader/Preloader';
 import { AuthContext } from '../../index';
 import { IMessage } from '../../types';
 import { FormValues } from '../SupportPage/SupportPage';
@@ -44,8 +45,8 @@ const AdminSupportDialog: FC = () => {
 			})
 		}
 	}
-	if (user.email !== 'admin@mail.ru') {
-		return <input type='password' />
+	if (user?.email !== 'admin@mail.ru' && user) {
+		return <Preloader />
 	}
 	return <div className='messages__wrapper'>
 		<div className='messages'>

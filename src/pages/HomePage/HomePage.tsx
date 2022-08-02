@@ -23,8 +23,10 @@ const Home: FC = () => {
 		return <div>{error}</div>
 	}
 	return (
-		<div className={'home-page'}>
-			{games.map(game => <GameItem {...game} key={`${game.id}__${game.title}`} />)}
+		<div className='container'>
+			<div className={'home-page'}>
+				{games.map(game => <GameItem {...game} key={`${game.id}__${game.title}`} />)}
+			</div>
 		</div>
 	)
 }

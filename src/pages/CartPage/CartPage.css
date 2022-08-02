@@ -1,23 +1,17 @@
 .order-page {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
 }
-
-.order-page__left {
-  width: 70%;
+.order-page__top {
+  margin-bottom: 10px;
 }
 
-.order-page__right {
-  width: 27%;
-  font-size: 18px;
-}
 @media (max-width: 767px) {
   .order-page {
-    flex-direction: column-reverse;
+    flex-direction: column;
   }
-  .order-page__total-price span,
-  .order-page__right,
-  .order-page__left {
+  .order-page__total-price span {
     width: 100%;
     margin-bottom: 10px;
   }

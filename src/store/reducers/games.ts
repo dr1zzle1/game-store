@@ -1,3 +1,4 @@
+import { AppDispatch, RootState } from './../index';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { doc, Firestore, getDoc, setDoc } from 'firebase/firestore';
 import { IGame } from './../../types';
@@ -35,7 +36,7 @@ export const gamesSlice = createSlice({
 
 const {fetchGame,fetchGamesSuccess,fetchGamesError} = gamesSlice.actions
 
-export const getGames = (db:Firestore) => async (dispatch:any) => {
+export const getGames = (db:Firestore) => async (dispatch:AppDispatch) => {
 	dispatch(fetchGame())
 	const docRef = doc(db, "games",'games');
 	try {
@@ -49,7 +50,7 @@ export const getGames = (db:Firestore) => async (dispatch:any) => {
 	
 }
 
-export const addGame = (db:Firestore, game:IGame) => async (dispatch: any,getState:any) => {
+export const addGame = (db:Firestore, game:IGame) => async (dispatch: AppDispatch,getState:() => RootState) => {
 	dispatch(fetchGame())
 	const gamesState = getState().games.games
 	if (gamesState){

@@ -5,13 +5,14 @@ import { IMessage } from '../../types';
 import './SupportPage.css'
 import { Field, Form, Formik, FormikHelpers } from 'formik';
 import { onSnapshot, setDoc, doc } from 'firebase/firestore';
+import { User } from 'firebase/auth';
 
 export interface FormValues {
 	messageText: string,
 }
 
 interface PropTypes {
-	user: any
+	user: User
 }
 
 const SupportPage: FC<PropTypes> = ({ user }) => {

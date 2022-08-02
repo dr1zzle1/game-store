@@ -1,3 +1,4 @@
+import { AppDispatch } from './../index';
 import { IGame } from './../../types';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { doc, getDoc, Firestore } from 'firebase/firestore';
@@ -44,7 +45,7 @@ export const gameItemSlice = createSlice({
 
 const {fetchGame,fetchGameSuccess,fetchGameError} = gameItemSlice.actions
 
-export const getGame = (id:number,db:Firestore) => async (dispatch:any) => {
+export const getGame = (id:number,db:Firestore) => async (dispatch:AppDispatch) => {
 	dispatch(fetchGame())
 	const docRef = doc(db, "games",'games');
 	try {

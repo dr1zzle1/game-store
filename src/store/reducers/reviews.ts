@@ -1,3 +1,4 @@
+import { AppDispatch, RootState } from './../index';
 import { IReview } from '../../types';
 import { doc, Firestore, getDoc, setDoc } from 'firebase/firestore';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
@@ -34,7 +35,7 @@ export const reviewsSlice = createSlice({
 
 export const {fetchReviews,fetchReviewsSuccess,fetchReviewError} = reviewsSlice.actions
 
-export const getReviews = (db:Firestore) => async (dispatch:any) => {
+export const getReviews = (db:Firestore) => async (dispatch:AppDispatch) => {
 	dispatch(fetchReviews())
 	const docRef = doc(db, "reviews",'reviews');
 	try {
@@ -48,7 +49,7 @@ export const getReviews = (db:Firestore) => async (dispatch:any) => {
 	
 }
 
-export const setReviews = (db:Firestore,review:IReview) => async (dispatch:any,getState:any) => {
+export const setReviews = (db:Firestore,review:IReview) => async (dispatch:AppDispatch,getState:() => RootState) => {
 	dispatch(fetchReviews())
 	const reviewsState3 = getState().reviews.reviews
 	await setDoc(doc(db, "reviews", "reviews"), {reviews:[review,...reviewsState3]});

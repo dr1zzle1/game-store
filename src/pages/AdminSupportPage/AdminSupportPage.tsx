@@ -16,7 +16,7 @@ const AdminSupportPage: FC = () => {
 	useEffect(() => {
 		const q = query(collection(db, "messages"));
 		const unsubscribe = onSnapshot(q, (querySnapshot) => {
-			const newCompanions: any = [];
+			const newCompanions: ICompanion[] = [];
 			querySnapshot.forEach((doc) => {
 				newCompanions.push({ userId: doc.data()?.messages[0].userId, userEmail: doc.data()?.messages[0].userEmail })
 			});
