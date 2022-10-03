@@ -26,9 +26,8 @@ const AdminSupportPage: FC = () => {
 			unsubscribe()
 		};
 	}, [db]);
-	console.log(companions);
 	return <div>
-		{companions.map(comp => <Link to={comp.userId}> {comp.userEmail}</Link>)
+		{companions.map(comp => <Link key={comp.userId} to={comp.userId}> {comp.userEmail}</Link>)
 		}
 	</div >;
 };

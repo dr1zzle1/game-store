@@ -22,7 +22,7 @@ const CartPage: FC = () => {
 				</div>
 			</div>
 			<div className="order-page__bottom">
-				{products.map(game => <OrderItem game={game} />)}
+				{products.map(game => <OrderItem key={game.id} game={game} />)}
 			</div>
 			<Button type="primary" size="m" onClick={onClick}>
 				Оформить заказ

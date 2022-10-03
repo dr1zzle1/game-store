@@ -55,7 +55,7 @@ const GamePage: FC = () => {
 					<p>{game.description}</p>
 					<p className="secondary-text">Популярные метки для этого продукта:</p>
 					{game.genres.map((genre) => (
-						<GameGenre genre={genre} />
+						<GameGenre key={game.id.toString() + genre} genre={genre} />
 					))}
 					<div className="game-page__buy-game">
 						<div className="game-buy">
